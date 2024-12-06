@@ -1,7 +1,7 @@
 import React from 'react';
 
 const categories = [
-  { name: 'Rodent Control', image: './public/Icons/rodent.jpg'},
+  { name: 'Rodent Control', image: '/Icons/rodent.jpg'},
   { name: 'Roach Control', image: './public/Icons/roach.jpg'},
   { name: 'Mosquito Control', image: './public/Icons/mosquitoes.jpg'},
   { name: 'Lizard Control', image: './public/Icons/lizards.jpg'},
