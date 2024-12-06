@@ -2,15 +2,15 @@ import React from 'react';
 
 const categories = [
   { name: 'Rodent Control', image: '/Icons/rodent.jpg'},
-  { name: 'Roach Control', image: './public/Icons/roach.jpg'},
-  { name: 'Mosquito Control', image: './public/Icons/mosquitoes.jpg'},
-  { name: 'Lizard Control', image: './public/Icons/lizards.jpg'},
-  { name: 'Termite Control', image: './public/Icons/terminate.jpg'},
-  { name: 'Bedbugs Control', image: './public/Icons/bedbugs.jpg'},
-  { name: 'Fly Control', image: './public/Icons/fly.jpg'},
-  { name: 'Snake Control Products', image: './public/Icons/snakes.jpg'},
-  { name: 'Pest Control Equipment', image: './public/Icons/pest.jpg'},
-  { name: 'Agro Chemical Products', image: './public/Icons/crop.jpg'},
+  { name: 'Roach Control', image: '/Icons/roach.jpg'},
+  { name: 'Mosquito Control', image: '/Icons/mosquitoes.jpg'},
+  { name: 'Lizard Control', image: '/Icons/lizards.jpg'},
+  { name: 'Termite Control', image: '/Icons/terminate.jpg'},
+  { name: 'Bedbugs Control', image: '/Icons/bedbugs.jpg'},
+  { name: 'Fly Control', image: '/Icons/fly.jpg'},
+  { name: 'Snake Control Products', image: '/Icons/snakes.jpg'},
+  { name: 'Pest Control Equipment', image: '/Icons/pest.jpg'},
+  { name: 'Agro Chemical Products', image: '/Icons/crop.jpg'},
 ];
 
 const Categories = () => {
