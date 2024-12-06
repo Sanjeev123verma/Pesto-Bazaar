@@ -1,41 +1,48 @@
 import React from 'react';
-import { MdPestControlRodent } from "react-icons/md"; <MdPestControlRodent />
 
 const categories = [
-  { name: 'Rodent Control', icon: MdPestControlRodent,},
-  { name: 'Roach Control', icon: MdPestControlRodent,},
-  { name: 'Mosquito Control', icon: MdPestControlRodent,},
-  { name: 'Lizard Control', icon: MdPestControlRodent,},
-  { name: 'Termite Control', icon: MdPestControlRodent,},
-  { name: 'Bedbugs Control', icon: MdPestControlRodent,},
-  { name: 'Fly Control', icon: MdPestControlRodent,},
-  { name: 'Snake Control Products ', icon: MdPestControlRodent,},
-  { name: 'Pest Control Equipment', icon: MdPestControlRodent,},
-  { name: 'Agro Chemical Products', icon: MdPestControlRodent,},
+  { name: 'Rodent Control', image: './public/Icons/rodent.jpg'},
+  { name: 'Roach Control', image: './public/Icons/roach.jpg'},
+  { name: 'Mosquito Control', image: './public/Icons/mosquitoes.jpg'},
+  { name: 'Lizard Control', image: './public/Icons/lizards.jpg'},
+  { name: 'Termite Control', image: './public/Icons/terminate.jpg'},
+  { name: 'Bedbugs Control', image: './public/Icons/bedbugs.jpg'},
+  { name: 'Fly Control', image: './public/Icons/fly.jpg'},
+  { name: 'Snake Control Products', image: './public/Icons/snakes.jpg'},
+  { name: 'Pest Control Equipment', image: './public/Icons/pest.jpg'},
+  { name: 'Agro Chemical Products', image: './public/Icons/crop.jpg'},
 ];
-
 
 const Categories = () => {
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-5 gap-6 p-2 ">
-      {categories.map((category) => {
-        const IconComponent = category.icon;
-        return (
-          <div 
-            key={category.name}
-            className={`relative flex flex-col items-center justify-center ${category.color} p-8 rounded-lg shadow-2xl transition-transform cursor-pointer`}
-          >
-            <div className="relative flex items-center justify-center mb-2 w-20 h-20 bg-white rounded-full shadow-2xl transition-transform duration-200 transform hover:-translate-y-4">
-              <IconComponent className="text-3xl text-gray-800" />
+    <div className="bg-violet-100 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* <h2 className="text-3xl font-bold text-center text-[#1c085d] mb-8">
+          Our Categories
+        </h2> */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+          {categories.map((category) => (
+            <div 
+              key={category.name}
+              className="relative flex flex-col items-center justify-center bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-transform transform hover:scale-105 cursor-pointer"
+            >
+              <div className="relative flex items-center justify-center mb-4 w-24 h-24 bg-gray-100 rounded-full shadow-md overflow-hidden transition-transform duration-100 transform hover:-translate-y-6">
+                <img
+                  src={category.image}
+                  alt={category.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <h3 className="text-center text-lg font-medium text-[#1c085d]">
+                {category.name}
+              </h3>
             </div>
-            <h3 className="text-xl  font-abc font-semibold text-[#1c085d]">{category.name}</h3>
-          </div>
-        );
-      })}
+          ))}
+        </div>
+      </div>
     </div>
   );
 };
 
 export default Categories;
-
 

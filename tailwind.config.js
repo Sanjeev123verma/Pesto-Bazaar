@@ -5,7 +5,8 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+    },
     fontFamily: {
       abc: ["Oswald", "sans-serif"],
       bbb: ["Playwrite DE Grund", "cursive"],

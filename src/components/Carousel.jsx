@@ -32,12 +32,12 @@ const Carousel = ({ products }) => {
   return (
     <div className="relative md:max-w-[90%] mx-auto py-4 px-6">
       <div className="absolute left-0 top-1/2 transform -translate-y-1/2">
-        <button onClick={prevSlide} className="p-2 bg-gray-700 text-white rounded-full">
+        <button onClick={prevSlide} className="p-2 bg-gray-700 text-white rounded-full hidden sm:block">
           <FaArrowLeft />
         </button>
       </div>
       <div className="absolute right-0 top-1/2 transform -translate-y-1/2">
-        <button onClick={nextSlide} className=" p-2 bg-gray-700 text-white rounded-full">
+        <button onClick={nextSlide} className=" p-2 bg-gray-700 text-white rounded-full hidden sm:block">
           <FaArrowRight />
         </button>
       </div>

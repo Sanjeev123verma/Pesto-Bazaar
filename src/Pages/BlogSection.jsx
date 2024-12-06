@@ -10,11 +10,11 @@ const BlogPost = ({ title, content, extraContent, imageUrl }) => {
 
   return (
 
-    <div className="bg-white p-6 rounded-lg shadow-md mb-6 font-abc">
-      <img src={imageUrl} alt={title} className="w-full h-50 object-cover rounded-t-lg mb-4" />
-      <h3 className="text-xl font-semibold mb-4">{title}</h3>
-      <p className="text-gray-700 mb-4">{content}</p>
-      {isExpanded && <p className="text-gray-700 mb-4">{extraContent}</p>}
+    <div className="bg-white md:p-6 p-2 rounded-lg shadow-md font-abc">
+      <img src={imageUrl} alt={title} className="w-full h-50 object-cover rounded-t-lg md:mb-4" />
+      <h3 className="text-xl font-semibold md:mb-4">{title}</h3>
+      <p className="text-gray-700 md:mb-4">{content}</p>
+      {isExpanded && <p className="text-gray-700 md:mb-4">{extraContent}</p>}
       <button 
         onClick={handleReadMore} 
         className="text-blue-500 hover:underline"
@@ -48,8 +48,8 @@ const BlogSection = () => {
   ];
 
   return (
-    <section className="container mx-auto py-10">
-      <h2 className=" bg-[#1c085d] max-w-[40%] mx-auto py-4 text-white text-3xl font-semibold font-abc text-center mb-10"> BLOGS </h2>
+    <section className="container mx-auto md:py-10">
+      <h2 className=" bg-[#1c085d] max-w-full mx-auto text-white text-3xl font-semibold font-abc text-center p-4"> BLOGS </h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {blogPosts.map((post, index) => (
           <BlogPost 
