@@ -163,7 +163,7 @@ const Navbar = () => {
               className={`fixed top-0 left-0 h-full bg-gray-100 shadow-lg transform transition-transform duration-300 ${
                 isOpen ? "translate-x-0" : "-translate-x-full"
               }`}
-              style={{ width: "50%" }} // Adjust panel width to half the screen
+              style={{ width: "50%", zIndex: 100, }} // Adjust panel width to half the screen
             >
               <div className="flex flex-col px-4 py-6 space-y-4">
                 <button
