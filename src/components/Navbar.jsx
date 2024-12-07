@@ -12,33 +12,39 @@ const Navbar = () => {
 
   const cartItems = useSelector((state) => state.cart.cartItems);
   // Calculate total cart item count
-  const cartItemCount = cartItems.reduce((total, item) => total + item.quantity, 0);
+  const cartItemCount = cartItems.reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
   return (
-    <nav className="sticky top-0 md:z-50 z-30 max-w-full mx-auto bg-gray-100 md:text-[white] md:shadow-2xl shadow-xl items-center font-semibold">
-      <div className="max-w-full mx-auto px-6 sm:px-6 lg:px-8 items-center ">
+    <nav className="sticky md:h-auto md:z-50 z-30 max-w-full mx-auto bg-gray-100 md:text-[white] md:shadow-2xl shadow-xl items-center font-semibold">
+      <div className="max-w-full mx-auto md:px-6 px-2 lg:px-8 items-center ">
         <div className="flex justify-between items-center text-center h-18">
-          <div className="flex-shrink-0 items-center text-center">
-           <NavLink to="/"> 
-           <img
-              src="/Images/Pestobazaarlogo.png"
-              alt="logo"
-              className="md:w-40 w-24 cursor-pointer items-center"
-            />
+          <div className="flex-shrink-0 align-middle py-2 md:py-0">
+            <NavLink to="/">
+              <img
+                src="/Images/Pestobazaarlogo.png"
+                alt="logo"
+                className="md:w-40 w-28 cursor-pointer"
+              />
             </NavLink>
           </div>
 
-          <div className="flex relative items-center bg-white rounded-full pr-4 border-black border">
+          <div className="hidden md:block bg-white rounded-full border-black border">
             <input
               type="text"
               placeholder="Search for Products... "
-              className="md:min-w-[300px] lg:w-[400px] bg-white text-black rounded-full pl-4 md:pl-8 pr-2 md:pr-5 md:py-2 py-1 px-2 md:px focus:outline-none focus:bg-white capitalize text-lg"
+              className="md:min-w-[300px] lg:w-[400px] w-auto bg-white text-black rounded-full md:py-2 py-1 md:pl-6 focus:outline-none focus:bg-white capitalize text-lg text-center md:text-left justify-between"
             />
-            <button type="submit" className="pl-2 text-xl text-[#1a185e]">
+            <button
+              type="submit"
+              className=" lg:pr-4 pr-2 text-xl text-[#1a185e]"
+            >
               <IoSearch />
             </button>
           </div>
@@ -103,16 +109,16 @@ const Navbar = () => {
               </span>
             </div>
 
-            <div className="hidden md:block">
-              <div className="flex items-center text-2xl">
-                <button className="flex flex-row items-center font-abc hover:bg-gray-300 px-3 py-2 rounded-md text-[#1a185e] space-x-3">
-                  <BsFillCartPlusFill />
+            <div className="flex">
+              <div className="flex items-center text-2xl ml-24 md:ml-0 text-center ">
+                <button className="flex flex-row items-center font-abc hover:bg-gray-300 md:px-4 p-1 rounded-md text-[#1a185e] space-x-3 text-right">
+                  <BsFillCartPlusFill className="relative" />
                   <NavLink to="/Cart" className="relative">
                     Cart
                     {cartItemCount > 0 && (
-                    <span className="absolute bottom-4 right-12 text-white text-sm bg-[#ea001b] px-1 rounded-full flex items-center justify-center">
-                      {cartItemCount}
-                    </span>
+                      <span className="absolute bottom-5 md:bottom-4 right-12 md:right-12 text-white text-sm bg-[#ea001b] px-1 rounded-full flex items-center justify-center">
+                        {cartItemCount}
+                      </span>
                     )}
                   </NavLink>
                 </button>
@@ -120,13 +126,14 @@ const Navbar = () => {
             </div>
           </div>
 
-          <div className="md:hidden">
+          <div className="relative md:hidden">
+            {/* Toggle Button */}
             <button
               onClick={toggleMenu}
-              className=" hover:bg-gray-200 focus:outline-none"
+              className="hover:bg-gray-200 focus:outline-none"
             >
               <svg
-                className="h-6 w-6"
+                className="h-8 w-10"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -150,226 +157,88 @@ const Navbar = () => {
                 )}
               </svg>
             </button>
+
+            {/* Sliding Panel */}
+            <div
+              className={`fixed top-0 left-0 h-full bg-gray-100 shadow-lg transform transition-transform duration-300 ${
+                isOpen ? "translate-x-0" : "-translate-x-full"
+              }`}
+              style={{ width: "50%" }} // Adjust panel width to half the screen
+            >
+              <div className="flex flex-col px-4 py-6 space-y-4">
+                <button
+                  onClick={toggleMenu}
+                  className="self-end text-[#1c085d hover:text-gray-800 focus:outline-none"
+                >
+                  Close
+                </button>
+                <ul className="space-y-2 text-center text-[#1c085d]">
+                  <li className="text-2xl hover:bg-gray-300 mx-20 px-4 py-1 rounded-full">
+                    <NavLink to="/Signup">
+                      <FaUserCircle />
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/"
+                      className="hover:bg-gray-300 block px-3 py-2 rounded-md text-base font-medium"
+                    >
+                      Home
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="Products"
+                      className="hover:bg-gray-300 block px-3 py-2 rounded-md text-base font-medium"
+                    >
+                      Shop
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/Aboutus"
+                      className="hover:bg-gray-300 block px-3 py-2 rounded-md text-base font-medium"
+                    >
+                      About Us
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="BlogSection"
+                      className="hover:bg-gray-300 block px-3 py-2 rounded-md text-base font-medium"
+                    >
+                      Blogs
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="Contact us"
+                      className="hover:bg-gray-300 block px-3 py-2 rounded-md text-base font-medium"
+                    >
+                      Contact Us
+                    </NavLink>
+                  </li>
+                  <li className="flex items-center text-2xl">
+                    <button className="flex flex-row items-center font-abc hover:bg-gray-300 px-4 py-2 rounded-md text-[#1a185e] space-x-2 mx-12">
+                      <BsFillCartPlusFill className="relative" />
+                      <NavLink to="/Cart" className="relative">
+                        Cart
+                        {cartItemCount > 0 && (
+                          <span className="absolute bottom-5 md:bottom-4 right-10 md:right-12 text-white text-sm bg-[#ea001b] px-1 rounded-full flex items-center justify-center">
+                            {cartItemCount}
+                          </span>
+                        )}
+                      </NavLink>
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-
-      {isOpen && (
-        <div className="flex flex-col px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center items-center justify-center py-2">
-          <ul className="flex flex-col text-center items-center">
-            <li className="text-2xl text-center hover:bg-gray-300 px-3 py-2 rounded-full">
-              <NavLink to="/Signup">
-                <FaUserCircle />
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/"
-                className="hover:bg-gray-300 block px-3 py-2 rounded-md text-base font-medium"
-              >
-                Home
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="Products"
-                className="hover:bg-gray-300 block px-3 py-2 rounded-md text-base font-medium"
-              >
-                Shop
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/Aboutus"
-                className="hover:bg-gray-300 block px-3 py-2 rounded-md text-base font-medium"
-              >
-                About Us
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="Contact us"
-                className="hover:bg-gray-300 block px-3 py-2 rounded-md text-base font-medium"
-              >
-                Contact Us
-              </NavLink>
-            </li>
-          </ul>
-        </div>
-      )}
     </nav>
   );
 };
 
 export default Navbar;
-
-
-
-// import React, { useState } from "react";
-// import { FaUserCircle } from "react-icons/fa";
-// import { BsFillCartPlusFill } from "react-icons/bs";
-// import { IoSearch } from "react-icons/io5";
-// import { MdFavoriteBorder } from "react-icons/md";
-// import { NavLink } from "react-router-dom";
-// import { useSelector } from "react-redux";
-
-// const Navbar = () => {
-//   const [isOpen, setIsOpen] = useState(false);
-
-//   const cartItems = useSelector((state) => state.cart.cartItems);
-//   const cartItemCount = cartItems.reduce((total, item) => total + item.quantity, 0);
-
-//   const toggleMenu = () => {
-//     setIsOpen(!isOpen);
-//   };
-
-//   return (
-//     <nav className="sticky top-0 z-50 bg-gray-100 shadow-md">
-//       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-//         <div className="flex justify-between items-center h-16">
-//           {/* Logo */}
-//           <div className="flex-shrink-0">
-//             <NavLink to="/">
-//               <img
-//                 src="/Images/Pestobazaarlogo.png"
-//                 alt="logo"
-//                 className="w-32 md:w-40"
-//               />
-//             </NavLink>
-//           </div>
-
-//           {/* Search Bar */}
-//           <div className="hidden md:flex items-center bg-white rounded-full border px-4">
-//             <input
-//               type="text"
-//               placeholder="Search for Products..."
-//               className="w-48 md:w-72 lg:w-96 bg-white text-black rounded-full py-1 px-4 focus:outline-none text-sm md:text-base"
-//             />
-//             <button type="submit" className="text-xl text-blue-600">
-//               <IoSearch />
-//             </button>
-//           </div>
-
-//           {/* Desktop Menu */}
-//           <div className="hidden md:flex items-center space-x-6">
-//             <NavLink
-//               to="/"
-//               className="text-gray-700 hover:text-blue-600 font-semibold"
-//             >
-//               Home
-//             </NavLink>
-//             <NavLink
-//               to="/Products"
-//               className="text-gray-700 hover:text-blue-600 font-semibold"
-//             >
-//               Shop
-//             </NavLink>
-//             <NavLink
-//               to="/BlogSection"
-//               className="text-gray-700 hover:text-blue-600 font-semibold"
-//             >
-//               Blogs
-//             </NavLink>
-//             <NavLink
-//               to="/Contact us"
-//               className="text-gray-700 hover:text-blue-600 font-semibold"
-//             >
-//               Contact Us
-//             </NavLink>
-//           </div>
-
-//           {/* User Icons */}
-//           <div className="hidden md:flex items-center space-x-4">
-//             <NavLink to="/Signup" className="text-2xl text-gray-700">
-//               <FaUserCircle />
-//             </NavLink>
-//             <NavLink to="/" className="text-2xl text-gray-700">
-//               <MdFavoriteBorder />
-//             </NavLink>
-//             <div className="relative">
-//               <NavLink to="/Cart" className="text-2xl text-gray-700">
-//                 <BsFillCartPlusFill />
-//               </NavLink>
-//               {cartItemCount > 0 && (
-//                 <span className="absolute top-0 right-0 bg-red-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-//                   {cartItemCount}
-//                 </span>
-//               )}
-//             </div>
-//           </div>
-
-//           {/* Mobile Menu Toggle */}
-//           <div className="md:hidden">
-//             <button
-//               onClick={toggleMenu}
-//               aria-label="Toggle Menu"
-//               className="text-gray-700 focus:outline-none"
-//             >
-//               <svg
-//                 className="w-6 h-6"
-//                 fill="none"
-//                 xmlns="http://www.w3.org/2000/svg"
-//                 viewBox="0 0 24 24"
-//                 stroke="currentColor"
-//               >
-//                 {isOpen ? (
-//                   <path
-//                     strokeLinecap="round"
-//                     strokeLinejoin="round"
-//                     strokeWidth="2"
-//                     d="M6 18L18 6M6 6l12 12"
-//                   />
-//                 ) : (
-//                   <path
-//                     strokeLinecap="round"
-//                     strokeLinejoin="round"
-//                     strokeWidth="2"
-//                     d="M4 6h16M4 12h16m-7 6h7"
-//                   />
-//                 )}
-//               </svg>
-//             </button>
-//           </div>
-//         </div>
-//       </div>
-
-//       {/* Mobile Menu */}
-//       {isOpen && (
-//         <div className="md:hidden bg-gray-100 px-4 py-2 space-y-2">
-//           <NavLink
-//             to="/"
-//             className="block text-gray-700 hover:text-blue-600 font-medium"
-//           >
-//             Home
-//           </NavLink>
-//           <NavLink
-//             to="/Products"
-//             className="block text-gray-700 hover:text-blue-600 font-medium"
-//           >
-//             Shop
-//           </NavLink>
-//           <NavLink
-//             to="/BlogSection"
-//             className="block text-gray-700 hover:text-blue-600 font-medium"
-//           >
-//             Blogs
-//           </NavLink>
-//           <NavLink
-//             to="/Contact us"
-//             className="block text-gray-700 hover:text-blue-600 font-medium"
-//           >
-//             Contact Us
-//           </NavLink>
-//           <NavLink
-//             to="/Signup"
-//             className="block text-gray-700 hover:text-blue-600 font-medium"
-//           >
-//             Profile
-//           </NavLink>
-//         </div>
-//       )}
-//     </nav>
-//   );
-// };
-
-// export default Navbar;
