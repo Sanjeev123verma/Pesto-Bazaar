@@ -81,14 +81,14 @@ const Products = () => {
     <>
     <div className=" max-w-full mx-auto md:px-4 px-4 items-center text-center">
       {/* Dropdown Section */}
-      <div className="p-8">
+      <div className="p-8 hidden md:block">
         <h1>
           <Dropdown />
         </h1>
       </div>
   
       {/* All Products Header */}
-      <div className="bg-gray-200 max-w-full mx-auto rounded-lg">
+      <div className="bg-gray-200 max-w-full mx-auto rounded-lg my-2">
         <h1 className="text-4xl font-bold font-abc py-2 text-[#1c085d]">
           ALL PRODUCTS
         </h1>
