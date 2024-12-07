@@ -172,8 +172,8 @@ const Navbar = () => {
                 >
                   Close
                 </button>
-                <ul className="space-y-2 text-center text-[#1c085d]">
-                  <li className="text-2xl hover:bg-gray-300 mx-20 px-4 py-1 rounded-full">
+                <ul className=" flex flex-col space-y-2 text-center text-[#1c085d] items-center justify-center">
+                  <li className="text-2xl hover:bg-gray-300 px-4 py-1 rounded-full ">
                     <NavLink to="/Signup">
                       <FaUserCircle />
                     </NavLink>
