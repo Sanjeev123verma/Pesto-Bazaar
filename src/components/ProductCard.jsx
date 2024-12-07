@@ -24,7 +24,7 @@ const ProductCard = ({ product }) => {
       />
       <div className="px-4 lg:py-1 md:py-4">
         <div className="font-bold text-xl lg:mb-1">{product.name}</div>
-        <p className="text-gray-700 text-base">{product.description}</p>
+        <p className="hidden md:block text-gray-700 text-base">{product.description}</p>
       </div>
       <div className="px-6 lg:pb-1">
         <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
