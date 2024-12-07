@@ -110,7 +110,7 @@ const Navbar = () => {
             </div>
 
             <div className="flex">
-              <div className="flex items-center text-2xl ml-24 md:ml-0 text-center ">
+              <div className="flex items-center text-2xl ml-16 md:ml-0 text-center ">
                 <button className="flex flex-row items-center font-abc hover:bg-gray-300 md:px-4 p-1 rounded-md text-[#1a185e] space-x-3 text-right">
                   <BsFillCartPlusFill className="relative" />
                   <NavLink to="/Cart" className="relative">
