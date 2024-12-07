@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import toast, { Toaster } from 'react-hot-toast';
@@ -11,7 +12,6 @@ const CartPage = () => {
     return cartItems.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2);
   };
 
-  // Handle add to cart with notification
   const handleAddToCart = (item) => {
     dispatch(addToCart({ ...item, quantity: item.quantity + 1 }));
     toast.success(`${item.name} added to cart!`);
@@ -20,9 +20,10 @@ const CartPage = () => {
   return (
     <div className="flex flex-col lg:flex-row gap-6 p-4 m-4">
       {/* Cart Table Section */}
-      <div className="w-full lg:w-3/4 justify-center items-center">
-        <table className="min-w-full bg-white shadow-md rounded-md">
-          <thead className="bg-gray-200 text-center text-gray-600 justify-center items-center">
+      <div className="w-full lg:w-3/4">
+        {/* Table for larger screens */}
+        <table className="hidden sm:table min-w-full bg-white shadow-md rounded-md">
+          <thead className="bg-gray-200 text-center text-gray-600">
             <tr>
               <th className="py-2 px-4">Index</th>
               <th className="py-2 px-4">Item</th>
@@ -41,12 +42,12 @@ const CartPage = () => {
                   <img
                     src={item.image}
                     alt={item.name}
-                    className="w-18 h-16 pl-12 object-cover justify-center items-center text-center"
+                    className="w-18 h-16 object-cover"
                   />
                 </td>
                 <td className="py-3 px-4">{item.name}</td>
                 <td className="py-3 px-4">₹ {item.price}</td>
-                <td className="py-3 px-4 flex items-center gap-2">
+                <td className="py-3 px-4 ml-16 flex items-center gap-2">
                   <button
                     onClick={() => {
                       if (item.quantity > 1) {
@@ -79,6 +80,54 @@ const CartPage = () => {
             ))}
           </tbody>
         </table>
+
+        {/* Responsive Cards for smaller screens */}
+        <div className="sm:hidden flex flex-col gap-4">
+          {cartItems.map((item, index) => (
+            <div key={item.id} className="border p-4 bg-white shadow-md rounded-md">
+              <div className="flex items-center gap-4">
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  className="w-24 h-20 object-cover"
+                />
+                <div>
+                  <h3 className="font-semibold">{item.name}</h3>
+                  <p>Price: ₹ {item.price}</p>
+                  <p>Subtotal: ₹ {(item.price * item.quantity).toFixed(2)}</p>
+                </div>
+              </div>
+              <div className="flex items-center justify-between mt-4 text-center ml-4">
+                <div className="flex items-center gap-2 justify-center">
+                  <button
+                    onClick={() => {
+                      if (item.quantity > 1) {
+                        dispatch(addToCart({ ...item, quantity: item.quantity - 1 }));
+                      }
+                    }}
+                    className="bg-gray-200 px-2 py-1 rounded"
+                    disabled={item.quantity === 1}
+                  >
+                    -
+                  </button>
+                  {item.quantity}
+                  <button
+                    onClick={() => handleAddToCart(item)}
+                    className="bg-gray-200 px-2 py-1 rounded"
+                  >
+                    +
+                  </button>
+                </div>
+                <button
+                  onClick={() => dispatch(removeFromCart(item))}
+                  className="bg-red-500 text-white px-3 py-1 rounded"
+                >
+                  Remove
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Checkout Section */}
@@ -98,7 +147,7 @@ const CartPage = () => {
       </div>
 
       {/* Toast Notifications */}
-      <Toaster position='top-center'/>
+      <Toaster position="top-center" />
     </div>
   );
 };
